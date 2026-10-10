@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrchestratorPro - Dashboard</title>
+    <!-- Link to the external modern CSS stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dark-theme">
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="logo-area">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="white"/></svg>
+            </div>
+            <div class="logo-text">
+                <h1>Orchestrator<span class="logo-highlight">Pro</span></h1>
+                <p class="subtitle">Task Automation & Job Monitoring</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="search-bar">
+                <input type="text" placeholder="Search tasks...">
+            </div>
+            <button class="icon-btn settings-btn">⚙️</button>
+            <div class="user-avatar">AD</div>
+        </div>
+    </header>
+
+    <!-- Stat Cards Section -->
+    <section class="stat-cards-grid">
+        <div class="stat-card total">
+            <div class="stat-content">
+                <h3>TOTAL TASKS</h3>
+                <p class="stat-value">6</p>
+                <div class="stat-meta">
+                    <span>📈 Active Schedule</span>
+                </div>
+            </div>
+            <div class="stat-icon-wrapper">
+                <div class="stat-icon list-icon"></div>
+            </div>
+        </div>
+        <div class="stat-card successful">
+            <div class="stat-content">
+                <h3>SUCCESSFUL</h3>
+                <p class="stat-value">3</p>
+                <div class="stat-meta">
+                    <span class="text-success">✅ Passing checks</span>
+                </div>
+            </div>
+            <div class="stat-icon-wrapper">
+                <div class="stat-icon check-icon"></div>
+            </div>
+        </div>
+        <div class="stat-card failed">
+            <div class="stat-content">
+                <h3>FAILED / ERRORS</h3>
+                <p class="stat-value">1</p>
+                <div class="stat-meta">
+                    <span class="text-danger">⚠️ Action required</span>
+                </div>
+            </div>
+            <div class="stat-icon-wrapper">
+                <div class="stat-icon error-icon"></div>
+            </div>
+        </div>
+        <div class="stat-card running">
+            <div class="stat-content">
+                <h3>RUNNING NOW</h3>
+                <p class="stat-value">1</p>
+                <div class="stat-meta">
+                    <span class="text-warning">⏳ In progress</span>
+                </div>
+            </div>
+            <div class="stat-icon-wrapper">
+                <div class="stat-icon gears-icon"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task Filter Toolbar -->
+    <section class="task-toolbar">
+        <div class="filter-group">
+            <button class="filter-btn active">All Tasks</button>
+            <button class="filter-btn">Success</button>
+            <button class="filter-btn">Failed</button>
+            <button class="filter-btn">Running</button>
+            <button class="filter-btn">Idle</button>
+        </div>
+        <div class="action-group">
+            <button class="action-btn btn-primary run-all-btn">▶ Run All Pending</button>
+            <div class="view-group">
+                <button class="view-btn grid-view active">Grid</button>
+                <button class="view-btn table-view">Table</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task List Grid -->
+    <section class="task-grid">
+        <!-- New Task Item incorporating your PDF Decryption route -->
+        <div class="task-card-item">
+            <div class="task-header-row">
+                <div class="task-info-main">
+                    <div class="task-type-icon pdf-icon"></div>
+                    <div class="task-titles">
+                        <span class="task-tag pdf-tag">PDF</span>
+                        <h3>PDF Processing Pipeline</h3>
+                    </div>
+                </div>
+                <div class="task-status-badge status-idle">Idle</div>
+            </div>
+            <p class="task-description">Handles PDF file ingestion, password decryption (<code>/decrypt</code> route), and structural validation.</p>
+            <div class="task-footer">
+                <div class="task-meta-left">
+                    <span class="clock-icon">🕒</span> Last run: <span id="lastRun-decrypt">Never</span>
+                </div>
+                <div class="task-actions-right">
+                    <button class="icon-btn-secondary" onclick="viewLogs('decrypt')" title="View Logs">📄</button>
+                    <!-- This button triggers your existing decrypt logic -->
+                    <button class="action-btn btn-primary run-task-btn" onclick="openDecryptModal()">▶ Run</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Placeholder Task: User Data Sync -->
+        <div class="task-card-item">
+            <div class="task-header-row">
+                <div class="task-info-main">
+                    <div class="task-type-icon db-icon"></div>
+                    <div class="task-titles">
+                        <span class="task-tag etl-tag">ETL</span>
+                        <h3>User Data Sync</h3>
+                    </div>
+                </div>
+                <div class="task-status-badge status-success">Success</div>
+            </div>
+            <p class="task-description">Synchronizes user profile records from legacy PostgreSQL replica to the central Snowflake warehouse.</p>
+            <div class="task-footer">
+                <div class="task-meta-left">
+                    <span class="clock-icon">🕒</span> Last run: 10 mins ago
+                </div>
+                <div class="task-actions-right">
+                    <button class="icon-btn-secondary" title="View Logs">📄</button>
+                    <button class="action-btn btn-primary run-task-btn">▶ Run</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The original Modals are retained for the functional decrypt route -->
+    <div id="decryptModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Run: PDF Decryption</h3>
+                <button class="close-btn" onclick="closeDecryptModal()">&times;</button>
+            </div>
+            <form id="modalDecryptForm">
+                <label>Select PDF File:</label>
+                <input type="file" id="modalPdf" required>
+                <label>Password:</label>
+                <input type="password" id="modalPassword" placeholder="Enter PDF password" required>
+                <label>Encrypted Folder Path:</label>
+                <input type="text" id="modalEncryptedFolder" class="modal-input" placeholder="/path/to/encrypted" required>
+                <label>Decrypted Folder Path:</label>
+                <input type="text" id="modalDecryptedFolder" class="modal-input" placeholder="/path/to/decrypted" required>
+                <button type="submit" class="action-btn btn-primary" style="width:100%; justify-content:center;">Execute Task</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="logsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Task Execution Logs</h3>
+                <button class="close-btn" onclick="closeLogsModal()">&times;</button>
+            </div>
+            <pre id="modalLogsContent" class="log-output">No logs available yet.</pre>
+        </div>
+    </div>
+
+    <!-- Link to the original JavaScript file -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
