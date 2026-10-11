@@ -24,7 +24,7 @@ FLASK_STATIC_DIR = BASE_DIR / "static"
 def load_blueprint(path: str, name: str):
     """Import a feature module by filesystem path and return its blueprint.
 
-    Each feature directory (e.g. ``modules/decrypt``) must contain an
+    Each feature directory (e.g. ``modules/pdfDecryptor``) must contain an
     ``__init__.py`` that re-exports the blueprint under *name*.
     """
     pkg_dir = (BASE_DIR / path).resolve()
@@ -75,7 +75,12 @@ def create_app() -> Flask:
     return app
 
 
+# ── Runtime config ----------------------------------------------------------
+APP_HOST = os.environ.get("APP_HOST", "0.0.0.0")
+APP_PORT = int(os.environ.get("APP_PORT", "5005"))
+
+
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5005)
+    app.run(host=APP_HOST, port=APP_PORT)

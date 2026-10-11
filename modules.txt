@@ -1,0 +1,5 @@
+# Registered modules
+  name=pdfDecryptor_bp
+  path=/Users/ani/projectX/ecosystem/pdfDecryptor/modules/pdfDecryptor
+  url_prefix=/pdfDecryptor
+  ---

@@ -1,11 +1,11 @@
 let cachedLogs = "No execution logs recorded.";
 
-function openDecryptModal() {
-    document.getElementById('decryptModal').style.display = 'flex';
+function openPdfDecryptorModal() {
+    document.getElementById('pdfDecryptorModal').style.display = 'flex';
 }
 
-function closeDecryptModal() {
-    document.getElementById('decryptModal').style.display = 'none';
+function closePdfDecryptorModal() {
+    document.getElementById('pdfDecryptorModal').style.display = 'none';
 }
 
 function viewLogs(task) {
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (decryptForm) {
         decryptForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            closeDecryptModal();
+            closePdfDecryptorModal();
 
             const formData = new FormData();
             formData.append('pdf', document.getElementById('modalPdf').files[0]);
@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('encrypted_folder', document.getElementById('modalEncryptedFolder').value);
             formData.append('decrypted_folder', document.getElementById('modalDecryptedFolder').value);
 
-            cachedLogs = "Executing task /decrypt...\nUploading file...";
+            cachedLogs = "Executing task /pdfDecryptor...\nUploading file...";
 
             try {
-                const response = await fetch('/decrypt', {
+                const response = await fetch('/pdfDecryptor', {
                     method: 'POST',
                     body: formData
                 });
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 cachedLogs = "Error executing request: " + err.message;
             }
 
-            document.getElementById('lastRun-decrypt').textContent = new Date().toLocaleTimeString();
-            viewLogs('decrypt');
+            document.getElementById('lastRun-pdfDecryptor').textContent = new Date().toLocaleTimeString();
+            viewLogs('pdfDecryptor');
         });
     }
 });

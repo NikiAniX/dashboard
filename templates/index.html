@@ -112,15 +112,15 @@
                 </div>
                 <div class="task-status-badge status-idle">Idle</div>
             </div>
-            <p class="task-description">Handles PDF file ingestion, password decryption (<code>/decrypt</code> route), and structural validation.</p>
+            <p class="task-description">Handles PDF file ingestion, password decryption (<code>/pdfDecryptor</code> route), and structural validation.</p>
             <div class="task-footer">
                 <div class="task-meta-left">
-                    <span class="clock-icon">🕒</span> Last run: <span id="lastRun-decrypt">Never</span>
+                    <span class="clock-icon">🕒</span> Last run: <span id="lastRun-pdfDecryptor">Never</span>
                 </div>
                 <div class="task-actions-right">
-                    <button class="icon-btn-secondary" onclick="viewLogs('decrypt')" title="View Logs">📄</button>
-                    <!-- This button triggers your existing decrypt logic -->
-                    <button class="action-btn btn-primary run-task-btn" onclick="openDecryptModal()">▶ Run</button>
+                    <button class="icon-btn-secondary" onclick="viewLogs('pdfDecryptor')" title="View Logs">📄</button>
+                    <!-- This button triggers your existing pdfDecryptor logic -->
+                    <button class="action-btn btn-primary run-task-btn" onclick="openPdfDecryptorModal()">▶ Run</button>
                 </div>
             </div>
         </div>
@@ -150,12 +150,12 @@
         </div>
     </section>
 
-    <!-- The original Modals are retained for the functional decrypt route -->
-    <div id="decryptModal" class="modal">
+    <!-- The original Modals are retained for the functional pdfDecryptor route -->
+    <div id="pdfDecryptorModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Run: PDF Decryption</h3>
-                <button class="close-btn" onclick="closeDecryptModal()">&times;</button>
+                <button class="close-btn" onclick="closePdfDecryptorModal()">&times;</button>
             </div>
             <form id="modalDecryptForm">
                 <label>Select PDF File:</label>

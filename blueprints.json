@@ -1,9 +1,9 @@
 {
   "blueprints": [
     {
-      "path": "/Users/ani/projectX/ecosystem/pdfDecryptor/modules/decrypt",
-      "name": "decrypt_bp",
-      "url_prefix": "/decrypt"
+      "path": "/Users/ani/projectX/ecosystem/pdfDecryptor/modules/pdfDecryptor",
+      "name": "pdfDecryptor_bp",
+      "url_prefix": "/pdfDecryptor"
     }
   ]
 }

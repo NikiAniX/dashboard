@@ -32,8 +32,8 @@ Browser                    Flask App                    Blueprint Module
    │                          │                              │
    ├── GET / ───────────────>│  render_template("index")───>│
    │                          │                              │
-   │     POST /decrypt       │                              │
-   │  <──────────────────────│  decrypt_bp.route("/decrypt")│
+   │     POST /pdfDecryptor       │                              │
+   │  <──────────────────────────│  pdfDecryptor_bp.route("/pdfDecryptor")│
    │                          │      → pypdf decryption       │
    │  ← JSON {status, logs} ─│                              │
 ```
@@ -128,7 +128,7 @@ Open a browser and navigate to `http://localhost:5005` to see the dashboard.
 
 ## Current Features
 
-### PDF Decryption (`/decrypt`)
+### PDF Decryption (`/pdfDecryptor`)
 
 - Upload a password-protected PDF via the dashboard UI modal.
 - Specify input (encrypted) and output (decrypted) folder paths.
