@@ -124,6 +124,54 @@
                 </div>
             </div>
         </div>
+        <!-- Task Item: Gd Downloader -->
+        <div class="task-card-item">
+            <div class="task-header-row">
+                <div class="task-info-main">
+                    <div class="task-type-icon dl-icon"></div>
+                    <div class="task-titles">
+                        <span class="task-tag dl-tag">Gd Downloader</span>
+                        <h3>Gd Downloader</h3>
+                    </div>
+                </div>
+                <div class="task-status-badge status-idle">Idle</div>
+            </div>
+            <p class="task-description">Automated task for Gd Downloader (/Users/ani/projectX/ecosystem/gdDownloader/modules/gdDownloader).</p>
+            <div class="task-footer">
+                <div class="task-meta-left">
+                    <span class="clock-icon">&#x1F552;</span> Last run: <span id="lastRun-gddownloader">Never</span>
+                </div>
+                <div class="task-actions-right">
+                    <button class="icon-btn-secondary" onclick="viewLogs('gddownloader')" title="View Logs">&#x1F4C4;</button>
+                    <button class="action-btn btn-primary run-task-btn" onclick="openGddownloaderModal()">&#x25B6; Run</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Item: Pdf Decryptor -->
+        <div class="task-card-item">
+            <div class="task-header-row">
+                <div class="task-info-main">
+                    <div class="task-type-icon pdf-icon"></div>
+                    <div class="task-titles">
+                        <span class="task-tag pdf-tag">Pdf Decryptor</span>
+                        <h3>Pdf Decryptor</h3>
+                    </div>
+                </div>
+                <div class="task-status-badge status-idle">Idle</div>
+            </div>
+            <p class="task-description">Automated task for Pdf Decryptor (/Users/ani/projectX/ecosystem/pdfDecryptor/modules/pdfDecryptor).</p>
+            <div class="task-footer">
+                <div class="task-meta-left">
+                    <span class="clock-icon">&#x1F552;</span> Last run: <span id="lastRun-pdfdecryptor">Never</span>
+                </div>
+                <div class="task-actions-right">
+                    <button class="icon-btn-secondary" onclick="viewLogs('pdfdecryptor')" title="View Logs">&#x1F4C4;</button>
+                    <button class="action-btn btn-primary run-task-btn" onclick="openPdfdecryptorModal()">&#x25B6; Run</button>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Placeholder Task: User Data Sync -->
         <div class="task-card-item">
@@ -183,5 +231,33 @@
 
     <!-- Link to the original JavaScript file -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <div id="pdfdecryptorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Run: Pdf Decryptor</h3>
+                <button class="close-btn" onclick="closePdfdecryptorModal()">&#x00D7;</button>
+            </div>
+            <form id="pdfdecryptorForm">
+                <p><em>Add your form fields here, or re-run with --dashboard to configure interactively.</em></p>
+                <button type="submit" class="action-btn btn-primary" style="width:100%; justify-content:center;">Execute Task</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="gddownloaderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Run: Gd Downloader</h3>
+                <button class="close-btn" onclick="closeGddownloaderModal()">&#x00D7;</button>
+            </div>
+            <form id="gddownloaderForm">
+                <p><em>Add your form fields here, or re-run with --dashboard to configure interactively.</em></p>
+                <button type="submit" class="action-btn btn-primary" style="width:100%; justify-content:center;">Execute Task</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

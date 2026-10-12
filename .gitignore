@@ -1,18 +1,16 @@
 # Virtual environment
 .venv/
 
-# Python
+# Byte-compiled / optimized / cached files
 __pycache__/
 *.py[cod]
-*.egg-info/
-dist/
-build/
+*$py.class
 
-# IDE
+# IDE (PyCharm / JetBrains)
 .idea/
-.vscode/
-*.swp
-*.swo
 
 # OS
 .DS_Store
+
+credentials.json
+token.pickle

@@ -4,6 +4,11 @@
       "path": "/Users/ani/projectX/ecosystem/pdfDecryptor/modules/pdfDecryptor",
       "name": "pdfDecryptor_bp",
       "url_prefix": "/pdfDecryptor"
+    },
+    {
+      "path": "/Users/ani/projectX/ecosystem/gdDownloader/modules/gdDownloader",
+      "name": "gdDownloader_bp",
+      "url_prefix": "/gdDownloader"
     }
   ]
 }

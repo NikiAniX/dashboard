@@ -413,3 +413,8 @@ pre.log-output {
     color: var(--color-success);
     max-height: 250px;
 }
+.pdf-tag { color: var(--color-success); background-color: var(--color-success-bg); border: 1px solid var(--color-success); }
+
+.dl-icon::after { content: "📋"; }
+
+.dl-tag { color: var(--color-success); background-color: var(--color-success-bg); border: 1px solid var(--color-success); }

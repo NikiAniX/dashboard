@@ -48,3 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function openPdfdecryptorModal() {
+    document.getElementById('pdfdecryptorModal').style.display = 'flex';
+}
+
+function closePdfdecryptorModal() {
+    document.getElementById('pdfdecryptorModal').style.display = 'none';
+}
+
+
+function openGddownloaderModal() {
+    document.getElementById('gddownloaderModal').style.display = 'flex';
+}
+
+function closeGddownloaderModal() {
+    document.getElementById('gddownloaderModal').style.display = 'none';
+}
