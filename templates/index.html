@@ -1,263 +1,423 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OrchestratorPro - Dashboard</title>
-    <!-- Link to the external modern CSS stylesheet -->
+    <title>Job Runner Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='tailwind-config.js') }}"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="dark-theme">
-    <!-- Main Header -->
-    <header class="main-header">
-        <div class="logo-area">
-            <div class="logo-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="white"/></svg>
-            </div>
-            <div class="logo-text">
-                <h1>Orchestrator<span class="logo-highlight">Pro</span></h1>
-                <p class="subtitle">Task Automation & Job Monitoring</p>
-            </div>
-        </div>
-        <div class="header-right">
-            <div class="search-bar">
-                <input type="text" placeholder="Search tasks...">
-            </div>
-            <button class="icon-btn settings-btn">⚙️</button>
-            <div class="user-avatar">AD</div>
-        </div>
-    </header>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
-    <!-- Stat Cards Section -->
-    <section class="stat-cards-grid">
-        <div class="stat-card total">
-            <div class="stat-content">
-                <h3>TOTAL TASKS</h3>
-                <p class="stat-value">6</p>
-                <div class="stat-meta">
-                    <span>📈 Active Schedule</span>
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-transform duration-300 -translate-x-full md:translate-x-0">
+            <!-- Brand / Logo -->
+            <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-brand-500/30">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <span class="text-lg font-bold tracking-tight">JobPulse</span>
                 </div>
             </div>
-            <div class="stat-icon-wrapper">
-                <div class="stat-icon list-icon"></div>
-            </div>
-        </div>
-        <div class="stat-card successful">
-            <div class="stat-content">
-                <h3>SUCCESSFUL</h3>
-                <p class="stat-value">3</p>
-                <div class="stat-meta">
-                    <span class="text-success">✅ Passing checks</span>
-                </div>
-            </div>
-            <div class="stat-icon-wrapper">
-                <div class="stat-icon check-icon"></div>
-            </div>
-        </div>
-        <div class="stat-card failed">
-            <div class="stat-content">
-                <h3>FAILED / ERRORS</h3>
-                <p class="stat-value">1</p>
-                <div class="stat-meta">
-                    <span class="text-danger">⚠️ Action required</span>
-                </div>
-            </div>
-            <div class="stat-icon-wrapper">
-                <div class="stat-icon error-icon"></div>
-            </div>
-        </div>
-        <div class="stat-card running">
-            <div class="stat-content">
-                <h3>RUNNING NOW</h3>
-                <p class="stat-value">1</p>
-                <div class="stat-meta">
-                    <span class="text-warning">⏳ In progress</span>
-                </div>
-            </div>
-            <div class="stat-icon-wrapper">
-                <div class="stat-icon gears-icon"></div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Task Filter Toolbar -->
-    <section class="task-toolbar">
-        <div class="filter-group">
-            <button class="filter-btn active">All Tasks</button>
-            <button class="filter-btn">Success</button>
-            <button class="filter-btn">Failed</button>
-            <button class="filter-btn">Running</button>
-            <button class="filter-btn">Idle</button>
-        </div>
-        <div class="action-group">
-            <button class="action-btn btn-primary run-all-btn">▶ Run All Pending</button>
-            <div class="view-group">
-                <button class="view-btn grid-view active">Grid</button>
-                <button class="view-btn table-view">Table</button>
-            </div>
-        </div>
-    </section>
+            <!-- Navigation Links -->
+            <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 transition-colors">
+                    <i class="fa-solid fa-chart-pie w-5 mr-3 text-center"></i> Dashboard
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                    <i class="fa-solid fa-list-check w-5 mr-3 text-center"></i> Jobs
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                    <i class="fa-solid fa-clock-rotate-left w-5 mr-3 text-center"></i> Schedules
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                    <i class="fa-solid fa-rectangle-list w-5 mr-3 text-center"></i> Execution Logs
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                    <i class="fa-solid fa-sliders w-5 mr-3 text-center"></i> Environments
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                    <i class="fa-solid fa-gear w-5 mr-3 text-center"></i> Settings
+                </a>
+            </nav>
 
-    <!-- Task List Grid -->
-    <section class="task-grid">
-        <!-- New Task Item incorporating your PDF Decryption route -->
-        <div class="task-card-item">
-            <div class="task-header-row">
-                <div class="task-info-main">
-                    <div class="task-type-icon pdf-icon"></div>
-                    <div class="task-titles">
-                        <span class="task-tag pdf-tag">PDF</span>
-                        <h3>PDF Processing Pipeline</h3>
+            <!-- Sidebar Footer / System Status -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <div class="p-3 bg-slate-100 dark:bg-slate-800/50 rounded-xl">
+                    <div class="flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
+                        <span>Cluster Load</span>
+                        <span class="text-emerald-500 font-semibold">32%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                        <div class="bg-brand-500 h-full rounded-full" style="width: 32%"></div>
                     </div>
                 </div>
-                <div class="task-status-badge status-idle">Idle</div>
             </div>
-            <p class="task-description">Handles PDF file ingestion, password decryption (<code>/pdfDecryptor</code> route), and structural validation.</p>
-            <div class="task-footer">
-                <div class="task-meta-left">
-                    <span class="clock-icon">🕒</span> Last run: <span id="lastRun-pdfDecryptor">Never</span>
-                </div>
-                <div class="task-actions-right">
-                    <button class="icon-btn-secondary" onclick="viewLogs('pdfDecryptor')" title="View Logs">📄</button>
-                    <!-- This button triggers your existing pdfDecryptor logic -->
-                    <button class="action-btn btn-primary run-task-btn" onclick="openPdfDecryptorModal()">▶ Run</button>
-                </div>
-            </div>
-        </div>
-        <!-- Task Item: Gd Downloader -->
-        <div class="task-card-item">
-            <div class="task-header-row">
-                <div class="task-info-main">
-                    <div class="task-type-icon dl-icon"></div>
-                    <div class="task-titles">
-                        <span class="task-tag dl-tag">Gd Downloader</span>
-                        <h3>Gd Downloader</h3>
+        </aside>
+
+        <!-- MAIN CONTENT WRAPPER -->
+        <div class="flex-1 flex flex-col md:pl-64 h-full overflow-hidden">
+            
+            <!-- TOP HEADER -->
+            <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 z-40 shrink-0">
+                <div class="flex items-center space-x-4">
+                    <button id="sidebarToggle" class="md:hidden text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                    <!-- Global Search -->
+                    <div class="relative w-64 md:w-80">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        </span>
+                        <input type="text" id="searchInput" placeholder="Search jobs, tags, triggers..." class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800/70 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
                     </div>
                 </div>
-                <div class="task-status-badge status-idle">Idle</div>
-            </div>
-            <p class="task-description">Automated task for Gd Downloader (/Users/ani/projectX/ecosystem/gdDownloader/modules/gdDownloader).</p>
-            <div class="task-footer">
-                <div class="task-meta-left">
-                    <span class="clock-icon">&#x1F552;</span> Last run: <span id="lastRun-gddownloader">Never</span>
-                </div>
-                <div class="task-actions-right">
-                    <button class="icon-btn-secondary" onclick="viewLogs('gddownloader')" title="View Logs">&#x1F4C4;</button>
-                    <button class="action-btn btn-primary run-task-btn" onclick="openGddownloaderModal()">&#x25B6; Run</button>
-                </div>
-            </div>
-        </div>
 
-        <!-- Task Item: Pdf Decryptor -->
-        <div class="task-card-item">
-            <div class="task-header-row">
-                <div class="task-info-main">
-                    <div class="task-type-icon pdf-icon"></div>
-                    <div class="task-titles">
-                        <span class="task-tag pdf-tag">Pdf Decryptor</span>
-                        <h3>Pdf Decryptor</h3>
+                <!-- Header Actions & Profile -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+
+                    <!-- Notifications -->
+                    <button class="relative w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-rose-500 rounded-full ring-2 ring-white dark:ring-slate-900"></span>
+                    </button>
+
+                    <!-- User Profile Dropdown / Card -->
+                    <div class="flex items-center space-x-3 pl-2 border-l border-slate-200 dark:border-slate-800">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="User Avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-200 dark:ring-slate-700">
+                        <div class="hidden sm:block text-left">
+                            <div class="text-sm font-semibold leading-tight">Sarah Jenkins</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-400">Admin Engineer</div>
+                        </div>
                     </div>
                 </div>
-                <div class="task-status-badge status-idle">Idle</div>
-            </div>
-            <p class="task-description">Automated task for Pdf Decryptor (/Users/ani/projectX/ecosystem/pdfDecryptor/modules/pdfDecryptor).</p>
-            <div class="task-footer">
-                <div class="task-meta-left">
-                    <span class="clock-icon">&#x1F552;</span> Last run: <span id="lastRun-pdfdecryptor">Never</span>
-                </div>
-                <div class="task-actions-right">
-                    <button class="icon-btn-secondary" onclick="viewLogs('pdfdecryptor')" title="View Logs">&#x1F4C4;</button>
-                    <button class="action-btn btn-primary run-task-btn" onclick="openPdfdecryptorModal()">&#x25B6; Run</button>
-                </div>
-            </div>
-        </div>
+            </header>
 
+            <!-- MAIN SCROLLABLE CONTAINER -->
+            <main class="flex-1 overflow-y-auto p-6 space-y-6">
+                
+                <!-- PAGE TITLE & QUICK ACTION -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl font-bold tracking-tight">Job Dashboard</h1>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Monitor automated tasks, execute manual runs, and inspect live logs.</p>
+                    </div>
+                    <button onclick="openNewJobModal()" class="inline-flex items-center justify-center px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm rounded-xl shadow-lg shadow-brand-500/20 transition-all transform active:scale-95">
+                        <i class="fa-solid fa-plus mr-2"></i> New Job
+                    </button>
+                </div>
 
-        <!-- Placeholder Task: User Data Sync -->
-        <div class="task-card-item">
-            <div class="task-header-row">
-                <div class="task-info-main">
-                    <div class="task-type-icon db-icon"></div>
-                    <div class="task-titles">
-                        <span class="task-tag etl-tag">ETL</span>
-                        <h3>User Data Sync</h3>
+                <!-- STATS CARDS OVERVIEW -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Card 1: Total Jobs -->
+                    <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Jobs</p>
+                            <h3 class="text-2xl font-bold mt-1" id="statTotal">24</h3>
+                            <span class="text-xs text-emerald-500 font-medium mt-1 inline-block"><i class="fa-solid fa-arrow-trend-up mr-1"></i>+2 added this week</span>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Running -->
+                    <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Running</p>
+                            <h3 class="text-2xl font-bold mt-1 text-amber-500" id="statRunning">3</h3>
+                            <span class="text-xs text-amber-500 font-medium mt-1 inline-block"><i class="fa-solid fa-spinner fa-spin mr-1"></i>Active execution</span>
+                        </div>
+                        <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Completed -->
+                    <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Completed</p>
+                            <h3 class="text-2xl font-bold mt-1 text-emerald-500" id="statCompleted">19</h3>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 inline-block">Last 24 hours</span>
+                        </div>
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Failed -->
+                    <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Failed</p>
+                            <h3 class="text-2xl font-bold mt-1 text-rose-500" id="statFailed">2</h3>
+                            <span class="text-xs text-rose-500 font-medium mt-1 inline-block"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Requires attention</span>
+                        </div>
+                        <div class="w-12 h-12 bg-rose-500/10 text-rose-500 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="task-status-badge status-success">Success</div>
-            </div>
-            <p class="task-description">Synchronizes user profile records from legacy PostgreSQL replica to the central Snowflake warehouse.</p>
-            <div class="task-footer">
-                <div class="task-meta-left">
-                    <span class="clock-icon">🕒</span> Last run: 10 mins ago
+
+                <!-- CONTROL PANEL / TOOLBAR -->
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                    <!-- Filters -->
+                    <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                        <button onclick="filterJobs('all')" class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 transition-all">All Jobs</button>
+                        <button onclick="filterJobs('running')" class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">Running</button>
+                        <button onclick="filterJobs('completed')" class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">Completed</button>
+                        <button onclick="filterJobs('failed')" class="filter-btn px-4 py-2 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">Failed</button>
+                    </div>
+
+                    <!-- Batch / Sort Actions -->
+                    <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                        <select id="sortSelect" onchange="sortJobs()" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option value="recent">Sort by: Most Recent</option>
+                            <option value="name">Sort by: Name</option>
+                            <option value="status">Sort by: Status</option>
+                        </select>
+                        <button onclick="refreshJobsTable()" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                            <i class="fa-solid fa-rotate mr-1.5"></i> Refresh
+                        </button>
+                    </div>
                 </div>
-                <div class="task-actions-right">
-                    <button class="icon-btn-secondary" title="View Logs">📄</button>
-                    <button class="action-btn btn-primary run-task-btn">▶ Run</button>
+
+                <!-- JOBS TABLE -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 dark:border-slate-800 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/40">
+                                    <th class="py-4 px-6">Job Name & Description</th>
+                                    <th class="py-4 px-6">Status</th>
+                                    <th class="py-4 px-6">Progress</th>
+                                    <th class="py-4 px-6">Last Run</th>
+                                    <th class="py-4 px-6 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="jobsTableBody" class="divide-y divide-slate-200 dark:divide-slate-800 text-sm">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Empty State (hidden by default) -->
+                    <div id="emptyState" class="hidden py-16 text-center">
+                        <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 text-slate-400 rounded-2xl flex items-center justify-center mx-auto text-2xl mb-4">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-700 dark:text-slate-200">No jobs found</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Try adjusting your filter or search query.</p>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- LOGS DRAWER / MODAL -->
+    <div id="logsDrawer" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex justify-end transition-opacity">
+        <div class="w-full max-w-2xl bg-white dark:bg-slate-900 h-full flex flex-col shadow-2xl transform translate-x-full transition-transform duration-300" id="drawerPanel">
+            <!-- Drawer Header -->
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <div>
+                    <span id="drawerJobStatus" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-amber-500/10 text-amber-500 mb-1 inline-block">Running</span>
+                    <h2 id="drawerJobTitle" class="text-lg font-bold">Job Execution Logs</h2>
+                </div>
+                <button onclick="closeLogsDrawer()" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Drawer Body / Console Output -->
+            <div class="flex-1 p-6 overflow-y-auto bg-slate-950 font-mono text-xs text-emerald-400 space-y-2 select-text" id="drawerLogsContent">
+                <!-- Logs rendered here -->
+            </div>
+
+            <!-- Drawer Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-between">
+                <div class="text-xs text-slate-500 dark:text-slate-400">
+                    <i class="fa-solid fa-circle-info mr-1"></i> Auto-scrolling active
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="copyLogs()" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <i class="fa-regular fa-copy mr-1.5"></i> Copy Logs
+                    </button>
+                    <button onclick="closeLogsDrawer()" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-medium hover:bg-brand-700 transition-colors">
+                        Close
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- The original Modals are retained for the functional pdfDecryptor route -->
-    <div id="pdfDecryptorModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Run: PDF Decryption</h3>
-                <button class="close-btn" onclick="closePdfDecryptorModal()">&times;</button>
+    <!-- NEW JOB MODAL -->
+    <div id="newJobModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="modalPanel">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Create New Job</h3>
+                <button onclick="closeNewJobModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <form id="modalDecryptForm">
-                <label>Select PDF File:</label>
-                <input type="file" id="modalPdf" required>
-                <label>Password:</label>
-                <input type="password" id="modalPassword" placeholder="Enter PDF password" required>
-                <label>Encrypted Folder Path:</label>
-                <input type="text" id="modalEncryptedFolder" class="modal-input" placeholder="/path/to/encrypted" required>
-                <label>Decrypted Folder Path:</label>
-                <input type="text" id="modalDecryptedFolder" class="modal-input" placeholder="/path/to/decrypted" required>
-                <button type="submit" class="action-btn btn-primary" style="width:100%; justify-content:center;">Execute Task</button>
+            <form id="newJobForm" onsubmit="handleCreateJob(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Job Name</label>
+                    <input type="text" id="newJobName" required placeholder="e.g. Database Sync & Backup" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Description</label>
+                    <input type="text" id="newJobDesc" required placeholder="e.g. Syncs user records to secondary cluster" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Environment</label>
+                        <select id="newJobEnv" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option>Production-Cluster-01</option>
+                            <option>Staging-Environment</option>
+                            <option>Analytics-Worker-Node</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Schedule / Trigger</label>
+                        <select id="newJobTrigger" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option>Manual Trigger</option>
+                            <option>Hourly Cron</option>
+                            <option>Daily at Midnight</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeNewJobModal()" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all">Create & Run</button>
+                </div>
             </form>
         </div>
     </div>
 
-    <div id="logsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Task Execution Logs</h3>
-                <button class="close-btn" onclick="closeLogsModal()">&times;</button>
-            </div>
-            <pre id="modalLogsContent" class="log-output">No logs available yet.</pre>
-        </div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-brand-500"></i>
+        <span id="toastMsg" class="text-sm font-medium">Job action completed successfully.</span>
     </div>
 
-    <!-- Link to the original JavaScript file -->
+    <!-- JAVASCRIPT APP LOGIC -->
+    <!-- JAVASCRIPT APP LOGIC -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 
-    <div id="pdfdecryptorModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Run: Pdf Decryptor</h3>
-                <button class="close-btn" onclick="closePdfdecryptorModal()">&#x00D7;</button>
+    <!-- RUN PARAMETERS MODAL -->
+    <div id="runParamsModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="runModalPanel">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 id="runModalJobTitle" class="text-lg font-bold">Configure Execution Parameters</h3>
+                <button onclick="closeRunParamsModal()" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <form id="pdfdecryptorForm">
-                <p><em>Add your form fields here, or re-run with --dashboard to configure interactively.</em></p>
-                <button type="submit" class="action-btn btn-primary" style="width:100%; justify-content:center;">Execute Task</button>
+            <form onsubmit="handleExecuteJobWithParams(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Command Arguments / Flags</label>
+                    <input type="text" id="paramArgs" required placeholder="e.g. --env=prod --workers=4" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Timeout (seconds)</label>
+                        <input type="number" id="paramTimeout" value="300" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Logging Verbosity</label>
+                        <select id="paramVerbosity" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option value="info">Info (Default)</option>
+                            <option value="debug">Debug Mode</option>
+                            <option value="warn">Warnings Only</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeRunParamsModal()" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-play mr-1.5 text-xs"></i> Execute Job</button>
+                </div>
             </form>
         </div>
     </div>
 
-
-    <div id="gddownloaderModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Run: Gd Downloader</h3>
-                <button class="close-btn" onclick="closeGddownloaderModal()">&#x00D7;</button>
+    <!-- RUN FORM: pdfDecryptor-post-pdfDecryptor (POST /pdfDecryptor) -->
+    <div id="runModal-pdfDecryptor-post-pdfDecryptor" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Decrypt an uploaded PDF</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-pdfDecryptor-post-pdfDecryptor')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <form id="gddownloaderForm">
-                <p><em>Add your form fields here, or re-run with --dashboard to configure interactively.</em></p>
-                <button type="submit" class="action-btn btn-primary" style="width:100%; justify-content:center;">Execute Task</button>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'pdfDecryptor-post-pdfDecryptor')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Folder to save the upload before processing">encrypted_folder *</label>
+                    <input type="text" name="encrypted_folder" value="" placeholder="/data/encrypted" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Destination folder for the decrypted output">decrypted_folder *</label>
+                    <input type="text" name="decrypted_folder" value="" placeholder="/data/decrypted" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Password used in the PDF decryption attempt">password</label>
+                    <input type="password" name="password" value="" placeholder="Password used in the PDF decryption attempt" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="The encrypted PDF file">pdf *</label>
+                    <input type="file" name="pdf" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-pdfDecryptor-post-pdfDecryptor')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
             </form>
         </div>
     </div>
 
+    <!-- RUN FORM: gdDownloader-post-gdDownloader (POST /gdDownloader) -->
+    <div id="runModal-gdDownloader-post-gdDownloader" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Download (and optionally delete) Google Drive items</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-gdDownloader-post-gdDownloader')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'gdDownloader-post-gdDownloader')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Comma-separated Drive file/folder IDs.">drive_ids *</label>
+                    <input type="text" name="drive_ids" value="" placeholder="1AbC...,2DeF..." required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Local directory to save into. Must not contain &#x27;..&#x27;.">output_dir</label>
+                    <input type="text" name="output_dir" value="./google_drive_downloaded" placeholder="Local directory to save into. Must not contain &#x27;..&#x27;." class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Delete from Drive after download.">delete_after</label>
+                    <select name="delete_after" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"><option value="true" selected>true</option><option value="false">false</option></select>
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-gdDownloader-post-gdDownloader')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
