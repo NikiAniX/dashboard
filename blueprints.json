@@ -1,11 +1,15 @@
 {
   "blueprints": [
     {
+      "module_name": "pdfDecryptor",
+      "project_path": "/Users/ani/projectX/ecosystem/pdfDecryptor",
       "path": "/Users/ani/projectX/ecosystem/pdfDecryptor/modules/pdfDecryptor",
       "name": "pdfDecryptor_bp",
       "url_prefix": "/pdfDecryptor"
     },
     {
+      "module_name": "gdDownloader",
+      "project_path": "/Users/ani/projectX/ecosystem/gdDownloader",
       "path": "/Users/ani/projectX/ecosystem/gdDownloader/modules/gdDownloader",
       "name": "gdDownloader_bp",
       "url_prefix": "/gdDownloader"
