@@ -15,6 +15,7 @@ This is a modular Flask dashboard for task automation with PDF decryption capabi
 | `requirements.txt` | Runtime dependencies: Flask 3+, pypdf 5+, cryptography 3.1+ |
 | `templates/index.html` | Dashboard layout with stat cards, task grid, and modal dialogs |
 | `static/script.js` | Frontend logic: modal toggling, form submission via fetch, log rendering |
+| `register_module.sh` / `run_dashboard.sh` / `swagger_dashboard.py` | Register modules, start the app, generate job + form from swagger |
 | `static/style.css` | Dark-themed dashboard stylesheet using CSS custom properties |
 
 ## Commands
@@ -34,11 +35,7 @@ The app serves on `http://0.0.0.0:5005`.
 
 ## Adding a Blueprint Module
 
-Every new feature follows the same pattern — no changes to `app.py` are required:
-
-1. Create `modules/<name>/__init__.py` that exports a Flask Blueprint variable.
-2. Add an entry to `blueprints.json` with path, export name, and URL prefix.
-3. Restart the server.
+Modules live in sibling projects (`<project_path>/modules/<name>` exporting `<name>_bp`, plus `swagger.json`). Run `./register_module.sh` (needs `jq`) to update `blueprints.json` and generate the dashboard job/form via `swagger_dashboard.py`, then `./run_dashboard.sh`. See `PROGRESS.md` for history.
 
 ## Coding Conventions
 
@@ -53,5 +50,5 @@ Every new feature follows the same pattern — no changes to `app.py` are requir
 
 - Blueprints are loaded at app creation time via `importlib.util.spec_from_file_location`. They cannot be hot-reloaded without a restart.
 - The `blueprints.json` paths are absolute; when the project moves, these must be updated or switched to relative paths.
-- The dashboard frontend is static — no backend API for stats, filters, or task status. These are hardcoded in `index.html`.
+- Jobs and run forms are generated into `static/script.js` (`jobsData`) and `templates/index.html` by `swagger_dashboard.py`. There is still no backend API for stats or task status.
 - Frontend state (logs) is kept in a single JS variable (`cachedLogs`) rather than persisted anywhere.
