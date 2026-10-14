@@ -11,6 +11,10 @@ dashboard/
 ├── app.py                # Flask app factory & dynamic blueprint loader
 ├── blueprints.json       # Declarative registry of registered feature modules
 ├── requirements.txt      # Python dependencies
+├── register_module.sh    # Register a module + generate its dashboard job/form
+├── run_dashboard.sh      # Install module requirements and start the app
+├── swagger_dashboard.py  # swagger.json -> jobsData entry + run-form modal
+├── PROGRESS.md           # Work log
 ├── templates/
 │   └── index.html        # Dashboard UI (stat cards, task grid, modals)
 └── static/
@@ -90,43 +94,20 @@ Open a browser and navigate to `http://localhost:5005` to see the dashboard.
 
 ## Adding a New Feature Module
 
-1. **Create the module directory:**
+Modules live in their own project (e.g. `../pdfDecryptor`) with `modules/<name>/__init__.py` exporting `<name>_bp`, plus a `swagger.json` at the project root.
 
-   ```
-   modules/<feature_name>/
-   ├── __init__.py       # Must export a Flask Blueprint named <name>
-   └── routes.py         # Your route handlers
-   ```
+```bash
+./register_module.sh   # prompts for module name, project path, URL prefix
+./run_dashboard.sh     # installs module requirements, starts on port 5005
+```
 
-2. **Write `__init__.py`:**
-
-   ```python
-   from flask import Blueprint
-   from .routes import bp  # or define inline
-
-   # Re-export the blueprint under a known name
-   <name> = bp
-   ```
-
-3. **Register it in `blueprints.json`:**
-
-   ```json
-   {
-     "blueprints": [
-       {
-         "path": "/Users/ani/projectX/ecosystem/dashboard/modules/<feature_name>",
-         "name": "<name>",
-         "url_prefix": "/<feature_name>"
-       }
-     ]
-   }
-   ```
-
-4. **Restart the app** — the blueprint loads on import, no code changes needed in `app.py`.
+`register_module.sh` appends the entry to `blueprints.json` and runs `swagger_dashboard.py`, which generates a job in `static/script.js` and a run-form modal in `templates/index.html` for each swagger operation. Duplicate URL prefixes are rejected. Requires `jq`.
 
 ---
 
 ## Current Features
+
+### Registered modules: `pdfDecryptor`, `gdDownloader`
 
 ### PDF Decryption (`/pdfDecryptor`)
 
