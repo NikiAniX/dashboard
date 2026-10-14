@@ -1,9 +1,0 @@
-# Registered modules
-  name=pdfDecryptor_bp
-  path=/Users/ani/projectX/ecosystem/pdfDecryptor/modules/pdfDecryptor
-  url_prefix=/pdfDecryptor
-  ---
-  name=gdDownloader_bp
-  path=/Users/ani/projectX/ecosystem/gdDownloader/modules/gdDownloader
-  url_prefix=/gdDownloader
-  ---
