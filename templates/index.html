@@ -101,7 +101,7 @@
                     <div class="flex items-center space-x-3 pl-2 border-l border-slate-200 dark:border-slate-800">
                         <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="User Avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-200 dark:ring-slate-700">
                         <div class="hidden sm:block text-left">
-                            <div class="text-sm font-semibold leading-tight">Sarah Jenkins</div>
+                            <div class="text-sm font-semibold leading-tight">Anand Prasad G C</div>
                             <div class="text-xs text-slate-500 dark:text-slate-400">Admin Engineer</div>
                         </div>
                     </div>
@@ -366,11 +366,11 @@
             <form onsubmit="handleSwaggerJobSubmit(event, 'pdfDecryptor-post-pdfDecryptor')" class="p-6 space-y-4">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Folder to save the upload before processing">encrypted_folder *</label>
-                    <input type="text" name="encrypted_folder" value="" placeholder="/data/encrypted" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <input type="text" name="encrypted_folder" value="/Users/ani/projectX/ecosystem/target/pdfDecryptor/input" placeholder="/data/encrypted" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Destination folder for the decrypted output">decrypted_folder *</label>
-                    <input type="text" name="decrypted_folder" value="" placeholder="/data/decrypted" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <input type="text" name="decrypted_folder" value="/Users/ani/projectX/ecosystem/target/pdfDecryptor/output" placeholder="/data/decrypted" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Password used in the PDF decryption attempt">password</label>
@@ -401,18 +401,45 @@
             <form onsubmit="handleSwaggerJobSubmit(event, 'gdDownloader-post-gdDownloader')" class="p-6 space-y-4">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Comma-separated Drive file/folder IDs.">drive_ids *</label>
-                    <input type="text" name="drive_ids" value="" placeholder="1AbC...,2DeF..." required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <input type="text" name="drive_ids" value="1WHNx29KSWomGI0h_HHJclbXSZwjNjv39" placeholder="1AbC...,2DeF..." required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Local directory to save into. Must not contain &#x27;..&#x27;.">output_dir</label>
-                    <input type="text" name="output_dir" value="./google_drive_downloaded" placeholder="Local directory to save into. Must not contain &#x27;..&#x27;." class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <input type="text" name="output_dir" value="/Users/ani/projectX/ecosystem/target/gdDownloader/" placeholder="Local directory to save into. Must not contain &#x27;..&#x27;." class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Delete from Drive after download.">delete_after</label>
-                    <select name="delete_after" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"><option value="true" selected>true</option><option value="false">false</option></select>
+                    <select name="delete_after" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"><option value="true">true</option><option value="false" selected>false</option></select>
                 </div>
                 <div class="pt-4 flex items-center justify-end space-x-3">
                     <button type="button" onclick="closeSwaggerJobModal('runModal-gdDownloader-post-gdDownloader')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataExtractor-post-ccDataExtractor (POST /ccDataExtractor) -->
+    <div id="runModal-ccDataExtractor-post-ccDataExtractor" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Extract statement data and save it as JSON</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataExtractor-post-ccDataExtractor')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataExtractor-post-ccDataExtractor')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Image (.png/.jpg/.jpeg) or .pdf to extract from.">file *</label>
+                    <input type="file" name="file" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Directory to save the JSON into (created if missing). Must not contain &#x27;..&#x27;.">output_dir *</label>
+                    <input type="text" name="output_dir" value="" placeholder="./output" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataExtractor-post-ccDataExtractor')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
                     <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
                     <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
                 </div>

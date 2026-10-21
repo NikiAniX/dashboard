@@ -13,6 +13,13 @@
       "path": "/Users/ani/projectX/ecosystem/gdDownloader/modules/gdDownloader",
       "name": "gdDownloader_bp",
       "url_prefix": "/gdDownloader"
+    },
+    {
+      "module_name": "ccDataExtractor",
+      "project_path": "/Users/ani/projectX/ecosystem/ccDataExtractor",
+      "path": "/Users/ani/projectX/ecosystem/ccDataExtractor/modules/ccDataExtractor",
+      "name": "ccDataExtractor_bp",
+      "url_prefix": "/ccDataExtractor"
     }
   ]
 }

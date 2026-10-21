@@ -14,3 +14,6 @@ __pycache__/
 
 credentials.json
 token.pickle
+
+# Job run history
+data/

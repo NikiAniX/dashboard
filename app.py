@@ -14,6 +14,8 @@ from importlib import util
 from pathlib import Path
 from flask import Flask
 
+from job_state import register_job_tracking
+
 # ── Paths -----------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent
 FLASK_TEMPLATE_DIR = BASE_DIR / "templates"
@@ -48,13 +50,14 @@ def load_blueprint(path: str, name: str):
     return getattr(module, name)
 
 
-def register_blueprints(app: Flask, config_file: str = "blueprints.json"):
-    """Read blueprints.json from BASE_DIR and register every listed blueprint."""
+def register_blueprints(app: Flask, config_file: str = "blueprints.json") -> set[str]:
+    """Register every blueprint in blueprints.json; return their URL prefixes."""
     with open(BASE_DIR / config_file) as f:
         entries = json.load(f)["blueprints"]
     for e in entries:
         bp = load_blueprint(e["path"], e["name"])
         app.register_blueprint(bp, url_prefix=e.get("url_prefix"))
+    return {e["url_prefix"] for e in entries if e.get("url_prefix")}
 
 
 # ── App factory -----------------------------------------------------------
@@ -65,7 +68,8 @@ def create_app() -> Flask:
         template_folder=str(FLASK_TEMPLATE_DIR),
         static_folder=str(FLASK_STATIC_DIR),
     )
-    register_blueprints(app)
+    job_endpoints = register_blueprints(app)
+    register_job_tracking(app, job_endpoints)
 
     @app.route("/")
     def index():

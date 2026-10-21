@@ -1,6 +1,19 @@
 // Registered jobs (added by register_module.sh from each module's swagger.json)
 let jobsData = [
     {
+        id: "ccDataExtractor-post-ccDataExtractor",
+        name: "Extract statement data and save it as JSON",
+        description: "Extract credit-card statement data from an image or PDF (offline OCR) and save it as a JSON file.",
+        status: 'completed',
+        progress: 0,
+        lastRun: 'Never',
+        method: "POST",
+        endpoint: "/ccDataExtractor",
+        contentType: "multipart/form-data",
+        formModalId: "runModal-ccDataExtractor-post-ccDataExtractor",
+        logs: ["Registered POST /ccDataExtractor from swagger.json."]
+    },
+    {
         id: "gdDownloader-post-gdDownloader",
         name: "Download (and optionally delete) Google Drive items",
         description: "Download files/folders from Google Drive, optionally deleting them from Drive afterwards.",
@@ -29,11 +42,33 @@ let jobsData = [
 ];
 
 let currentFilter = 'all';
+const JOB_STATUS_POLL_MS = 3000;
+
+// Pull last run / status / logs recorded by the server (covers curl runs too)
+async function syncJobStatus() {
+    try {
+        const res = await fetch('/api/jobs/status');
+        if (!res.ok) return;
+        const state = await res.json();
+        jobsData.forEach(job => {
+            const run = state[job.endpoint];
+            if (!run) return;
+            job.status = run.status;
+            job.progress = run.status === 'running' ? 10 : 100;
+            job.lastRun = new Date(run.last_run * 1000).toLocaleString();
+            job.logs = [job.logs[0], ...run.logs];
+        });
+        renderJobs(document.getElementById('searchInput')?.value ?? '');
+        updateStats();
+    } catch (_) { /* server unreachable; keep last known state */ }
+}
 
 // DOM Loaded Init
 document.addEventListener('DOMContentLoaded', () => {
     renderJobs();
     updateStats();
+    syncJobStatus();
+    setInterval(syncJobStatus, JOB_STATUS_POLL_MS);
 
     // Theme Toggle Logic
     const themeToggleBtn = document.getElementById('themeToggle');
@@ -199,29 +234,15 @@ async function handleSwaggerJobSubmit(e, id) {
     if (!job) return;
 
     const request = callJobEndpoint(job, e.target);
-    job.status = 'running';
-    job.progress = 10;
-    job.lastRun = 'Just now';
-    job.logs.push(`[${new Date().toLocaleTimeString()}] ${job.method} ${job.endpoint} started.`);
     closeSwaggerJobModal(job.formModalId);
-    renderJobs();
-    updateStats();
 
     try {
-        const res = await request;
-        let data = null;
-        try { data = await res.json(); } catch (_) { /* non-JSON response */ }
-        const succeeded = res.ok && (data?.status ? data.status === 'success' : true);
-        const lines = data?.logs ?? [`HTTP ${res.status} ${res.statusText}`];
-        job.status = succeeded ? 'completed' : 'failed';
-        job.logs.push(...lines.map(line => `[${new Date().toLocaleTimeString()}] ${line}`));
+        await request;
     } catch (err) {
         job.status = 'failed';
         job.logs.push(`[${new Date().toLocaleTimeString()}] Request failed: ${err.message}`);
     }
-    job.progress = 100;
-    renderJobs();
-    updateStats();
+    await syncJobStatus();
     showToast(`Job "${job.name}" ${job.status}.`);
 }
 

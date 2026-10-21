@@ -107,7 +107,7 @@ Modules live in their own project (e.g. `../pdfDecryptor`) with `modules/<name>/
 
 ## Current Features
 
-### Registered modules: `pdfDecryptor`, `gdDownloader`
+### Registered modules: `pdfDecryptor`, `gdDownloader`, `ccDataExtractor`
 
 ### PDF Decryption (`/pdfDecryptor`)
 
@@ -115,6 +115,12 @@ Modules live in their own project (e.g. `../pdfDecryptor`) with `modules/<name>/
 - Specify input (encrypted) and output (decrypted) folder paths.
 - Executes decryption using `pypdf` and returns structured logs.
 - Available as a task card in the dashboard grid with "Run" and "View Logs" actions.
+
+### Credit-Card Statement Extraction (`/ccDataExtractor`)
+
+- Upload a statement (`.png`, `.jpg`, `.jpeg`, `.pdf`) and an output directory via the dashboard run form (generated from the module's `swagger.json`).
+- Runs offline OCR (RapidOCR + PyMuPDF) and saves summary, transactions and a reconciliation block as JSON.
+- Needs the module's heavy requirements (`rapidocr-onnxruntime`, `pymupdf`, ...); `run_dashboard.sh` installs them.
 
 ---
 

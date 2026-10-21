@@ -14,6 +14,7 @@ Summary of work done so far, derived from the git history (most recent last).
 | `25ee02b` | Condensed `static/style.css`. |
 | `10dc83f` | Reworked `templates/index.html` (dashboard layout and generated run-form modals). |
 | `a6f7325` | Removed the unused `modules.txt`. |
+| (uncommitted) | Registered `ccDataExtractor` via `register_module.sh`: added to `blueprints.json`, plus its job in `static/script.js` and run-form modal in `templates/index.html`. |
 
 ## Current Workflow
 
@@ -22,7 +23,7 @@ Summary of work done so far, derived from the git history (most recent last).
 
 ## Notes / Known Gaps
 
-- Modules live in sibling projects (e.g. `../pdfDecryptor`, `../gdDownloader`), not in a local `modules/` directory.
+- Modules live in sibling projects (e.g. `../pdfDecryptor`, `../gdDownloader`, `../ccDataExtractor`), not in a local `modules/` directory.
 - `blueprints.json` stores absolute paths; they break if the projects move.
 - `credentials.json` and `token.pickle` (Google Drive auth) are git-ignored; keep them out of version control.
 - Stats and task status are still static, with no backend API.
