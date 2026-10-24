@@ -14,6 +14,7 @@ from importlib import util
 from pathlib import Path
 from flask import Flask
 
+from finance import finance_bp
 from job_state import register_job_tracking
 
 # ── Paths -----------------------------------------------------------------
@@ -70,6 +71,7 @@ def create_app() -> Flask:
     )
     job_endpoints = register_blueprints(app)
     register_job_tracking(app, job_endpoints)
+    app.register_blueprint(finance_bp)
 
     @app.route("/")
     def index():
