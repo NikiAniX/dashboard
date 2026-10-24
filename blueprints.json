@@ -20,6 +20,13 @@
       "path": "/Users/ani/projectX/ecosystem/ccDataExtractor/modules/ccDataExtractor",
       "name": "ccDataExtractor_bp",
       "url_prefix": "/ccDataExtractor"
+    },
+    {
+      "module_name": "ccDataLedger",
+      "project_path": "/Users/ani/projectX/ecosystem/ccDataLedger",
+      "path": "/Users/ani/projectX/ecosystem/ccDataLedger/modules/ccDataLedger",
+      "name": "ccDataLedger_bp",
+      "url_prefix": "/ccDataLedger"
     }
   ]
 }
