@@ -25,14 +25,18 @@
                     <div class="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-brand-500/30">
                         <i class="fa-solid fa-terminal"></i>
                     </div>
-                    <span class="text-lg font-bold tracking-tight">JobPulse</span>
+                    <span class="nav-label text-lg font-bold tracking-tight">JobPulse</span>
                 </div>
+            <button id="sidebarCollapse" type="button" aria-label="Toggle sidebar" class="sidebar-collapse-btn hidden md:flex ml-auto w-8 h-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-angles-left"></i></button>
             </div>
 
             <!-- Navigation Links -->
             <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
                 <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 transition-colors">
                     <i class="fa-solid fa-chart-pie w-5 mr-3 text-center"></i> Dashboard
+                </a>
+                <a href="/finance" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+                    <i class="fa-solid fa-wallet w-5 mr-3 text-center"></i> Finance
                 </a>
                 <a href="#" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
                     <i class="fa-solid fa-list-check w-5 mr-3 text-center"></i> Jobs
@@ -66,7 +70,7 @@
         </aside>
 
         <!-- MAIN CONTENT WRAPPER -->
-        <div class="flex-1 flex flex-col md:pl-64 h-full overflow-hidden">
+        <div id="mainWrap" class="flex-1 flex flex-col md:pl-64 h-full overflow-hidden transition-[padding] duration-300">
             
             <!-- TOP HEADER -->
             <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 z-40 shrink-0">
@@ -440,6 +444,1031 @@
                 </div>
                 <div class="pt-4 flex items-center justify-end space-x-3">
                     <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataExtractor-post-ccDataExtractor')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="{{ url_for('static', filename='sidebar-collapse.js') }}"></script>
+
+    <!-- RUN FORM: ccDataLedger-delete-ccDataLedger-additional_details-row_id (DELETE /ccDataLedger/additional_details/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-delete-ccDataLedger-additional_details-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Delete additional_details row</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-additional_details-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-delete-ccDataLedger-additional_details-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-additional_details-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-patch-ccDataLedger-additional_details-row_id (PATCH /ccDataLedger/additional_details/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-patch-ccDataLedger-additional_details-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update additional_details row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-additional_details-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-patch-ccDataLedger-additional_details-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">category</label>
+                    <input type="text" name="category" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">key</label>
+                    <input type="text" name="key" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">value</label>
+                    <input type="text" name="value" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-additional_details-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-put-ccDataLedger-additional_details-row_id (PUT /ccDataLedger/additional_details/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-put-ccDataLedger-additional_details-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update additional_details row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-additional_details-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-put-ccDataLedger-additional_details-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">category</label>
+                    <input type="text" name="category" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">key</label>
+                    <input type="text" name="key" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">value</label>
+                    <input type="text" name="value" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-additional_details-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-additional_details-row_id (GET /ccDataLedger/additional_details/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-additional_details-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Get one row of additional_details</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-additional_details-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-additional_details-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-additional_details-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-post-ccDataLedger-additional_details (POST /ccDataLedger/additional_details) -->
+    <div id="runModal-ccDataLedger-post-ccDataLedger-additional_details" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Create additional_details row</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-additional_details')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-post-ccDataLedger-additional_details')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_id *</label>
+                    <input type="number" name="statement_id" value="" placeholder="" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">category</label>
+                    <input type="text" name="category" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">key</label>
+                    <input type="text" name="key" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">value</label>
+                    <input type="text" name="value" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-additional_details')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-additional_details (GET /ccDataLedger/additional_details) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-additional_details" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">List additional_details</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-additional_details')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-additional_details')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">limit</label>
+                    <input type="number" name="limit" value="100" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">offset</label>
+                    <input type="number" name="offset" value="0" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_id</label>
+                    <input type="number" name="statement_id" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">category</label>
+                    <input type="text" name="category" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-additional_details')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-delete-ccDataLedger-transactions-row_id (DELETE /ccDataLedger/transactions/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-delete-ccDataLedger-transactions-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Delete transactions row</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-transactions-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-delete-ccDataLedger-transactions-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-transactions-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-patch-ccDataLedger-transactions-row_id (PATCH /ccDataLedger/transactions/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-patch-ccDataLedger-transactions-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update transactions row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-transactions-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-patch-ccDataLedger-transactions-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">date</label>
+                    <input type="text" name="date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">time</label>
+                    <input type="text" name="time" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">details</label>
+                    <input type="text" name="details" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">emi</label>
+                    <input type="number" name="emi" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">amount</label>
+                    <input type="text" name="amount" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">amount_type</label>
+                    <input type="text" name="amount_type" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">min_confidence</label>
+                    <input type="number" name="min_confidence" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">merchant_category</label>
+                    <input type="text" name="merchant_category" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">reference</label>
+                    <input type="text" name="reference" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">reward_points</label>
+                    <input type="text" name="reward_points" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">channel</label>
+                    <input type="text" name="channel" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cashback</label>
+                    <input type="text" name="cashback" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cashback_type</label>
+                    <input type="text" name="cashback_type" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">card_no</label>
+                    <input type="text" name="card_no" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-transactions-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-put-ccDataLedger-transactions-row_id (PUT /ccDataLedger/transactions/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-put-ccDataLedger-transactions-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update transactions row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-transactions-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-put-ccDataLedger-transactions-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">date</label>
+                    <input type="text" name="date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">time</label>
+                    <input type="text" name="time" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">details</label>
+                    <input type="text" name="details" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">emi</label>
+                    <input type="number" name="emi" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">amount</label>
+                    <input type="text" name="amount" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">amount_type</label>
+                    <input type="text" name="amount_type" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">min_confidence</label>
+                    <input type="number" name="min_confidence" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">merchant_category</label>
+                    <input type="text" name="merchant_category" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">reference</label>
+                    <input type="text" name="reference" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">reward_points</label>
+                    <input type="text" name="reward_points" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">channel</label>
+                    <input type="text" name="channel" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cashback</label>
+                    <input type="text" name="cashback" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cashback_type</label>
+                    <input type="text" name="cashback_type" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">card_no</label>
+                    <input type="text" name="card_no" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-transactions-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-transactions-row_id (GET /ccDataLedger/transactions/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-transactions-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Get one row of transactions</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-transactions-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-transactions-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-transactions-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-post-ccDataLedger-transactions (POST /ccDataLedger/transactions) -->
+    <div id="runModal-ccDataLedger-post-ccDataLedger-transactions" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Create transactions row</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-transactions')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-post-ccDataLedger-transactions')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_id *</label>
+                    <input type="number" name="statement_id" value="" placeholder="" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">date</label>
+                    <input type="text" name="date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">time</label>
+                    <input type="text" name="time" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">details</label>
+                    <input type="text" name="details" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">emi</label>
+                    <input type="number" name="emi" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">amount</label>
+                    <input type="text" name="amount" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">amount_type</label>
+                    <input type="text" name="amount_type" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">min_confidence</label>
+                    <input type="number" name="min_confidence" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">merchant_category</label>
+                    <input type="text" name="merchant_category" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">reference</label>
+                    <input type="text" name="reference" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">reward_points</label>
+                    <input type="text" name="reward_points" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">channel</label>
+                    <input type="text" name="channel" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cashback</label>
+                    <input type="text" name="cashback" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cashback_type</label>
+                    <input type="text" name="cashback_type" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">card_no</label>
+                    <input type="text" name="card_no" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-transactions')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-transactions (GET /ccDataLedger/transactions) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-transactions" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">List transactions</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-transactions')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-transactions')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">limit</label>
+                    <input type="number" name="limit" value="100" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">offset</label>
+                    <input type="number" name="offset" value="0" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_id</label>
+                    <input type="number" name="statement_id" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">amount_type</label>
+                    <input type="text" name="amount_type" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-transactions')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-delete-ccDataLedger-summary-row_id (DELETE /ccDataLedger/summary/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-delete-ccDataLedger-summary-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Delete summary row</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-summary-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-delete-ccDataLedger-summary-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-summary-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-patch-ccDataLedger-summary-row_id (PATCH /ccDataLedger/summary/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-patch-ccDataLedger-summary-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update summary row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-summary-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-patch-ccDataLedger-summary-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">total_payment_due</label>
+                    <input type="text" name="total_payment_due" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">minimum_payment_due</label>
+                    <input type="text" name="minimum_payment_due" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_period</label>
+                    <input type="text" name="statement_period" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payment_due_date</label>
+                    <input type="text" name="payment_due_date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_generation_date</label>
+                    <input type="text" name="statement_generation_date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credit_card_number</label>
+                    <input type="text" name="credit_card_number" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credit_limit</label>
+                    <input type="text" name="credit_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">available_credit_limit</label>
+                    <input type="text" name="available_credit_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">available_cash_limit</label>
+                    <input type="text" name="available_cash_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">previous_statement_dues</label>
+                    <input type="text" name="previous_statement_dues" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payments_credits</label>
+                    <input type="text" name="payments_credits" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">purchases_debit</label>
+                    <input type="text" name="purchases_debit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">finance_charges</label>
+                    <input type="text" name="finance_charges" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cash_advance</label>
+                    <input type="text" name="cash_advance" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">surcharge</label>
+                    <input type="text" name="surcharge" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">previous_balance</label>
+                    <input type="text" name="previous_balance" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payments</label>
+                    <input type="text" name="payments" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credits</label>
+                    <input type="text" name="credits" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">purchases</label>
+                    <input type="text" name="purchases" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">other_debits_charges</label>
+                    <input type="text" name="other_debits_charges" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">total_payment_due_check</label>
+                    <input type="text" name="total_payment_due_check" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-summary-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-put-ccDataLedger-summary-row_id (PUT /ccDataLedger/summary/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-put-ccDataLedger-summary-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update summary row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-summary-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-put-ccDataLedger-summary-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">total_payment_due</label>
+                    <input type="text" name="total_payment_due" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">minimum_payment_due</label>
+                    <input type="text" name="minimum_payment_due" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_period</label>
+                    <input type="text" name="statement_period" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payment_due_date</label>
+                    <input type="text" name="payment_due_date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_generation_date</label>
+                    <input type="text" name="statement_generation_date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credit_card_number</label>
+                    <input type="text" name="credit_card_number" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credit_limit</label>
+                    <input type="text" name="credit_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">available_credit_limit</label>
+                    <input type="text" name="available_credit_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">available_cash_limit</label>
+                    <input type="text" name="available_cash_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">previous_statement_dues</label>
+                    <input type="text" name="previous_statement_dues" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payments_credits</label>
+                    <input type="text" name="payments_credits" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">purchases_debit</label>
+                    <input type="text" name="purchases_debit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">finance_charges</label>
+                    <input type="text" name="finance_charges" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cash_advance</label>
+                    <input type="text" name="cash_advance" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">surcharge</label>
+                    <input type="text" name="surcharge" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">previous_balance</label>
+                    <input type="text" name="previous_balance" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payments</label>
+                    <input type="text" name="payments" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credits</label>
+                    <input type="text" name="credits" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">purchases</label>
+                    <input type="text" name="purchases" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">other_debits_charges</label>
+                    <input type="text" name="other_debits_charges" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">total_payment_due_check</label>
+                    <input type="text" name="total_payment_due_check" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-summary-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-summary-row_id (GET /ccDataLedger/summary/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-summary-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Get one row of summary</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-summary-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-summary-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-summary-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-post-ccDataLedger-summary (POST /ccDataLedger/summary) -->
+    <div id="runModal-ccDataLedger-post-ccDataLedger-summary" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Create summary row</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-summary')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-post-ccDataLedger-summary')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_id *</label>
+                    <input type="number" name="statement_id" value="" placeholder="" required class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">total_payment_due</label>
+                    <input type="text" name="total_payment_due" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">minimum_payment_due</label>
+                    <input type="text" name="minimum_payment_due" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_period</label>
+                    <input type="text" name="statement_period" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payment_due_date</label>
+                    <input type="text" name="payment_due_date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_generation_date</label>
+                    <input type="text" name="statement_generation_date" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credit_card_number</label>
+                    <input type="text" name="credit_card_number" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credit_limit</label>
+                    <input type="text" name="credit_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">available_credit_limit</label>
+                    <input type="text" name="available_credit_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">available_cash_limit</label>
+                    <input type="text" name="available_cash_limit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">previous_statement_dues</label>
+                    <input type="text" name="previous_statement_dues" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payments_credits</label>
+                    <input type="text" name="payments_credits" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">purchases_debit</label>
+                    <input type="text" name="purchases_debit" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">finance_charges</label>
+                    <input type="text" name="finance_charges" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cash_advance</label>
+                    <input type="text" name="cash_advance" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">surcharge</label>
+                    <input type="text" name="surcharge" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">previous_balance</label>
+                    <input type="text" name="previous_balance" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">payments</label>
+                    <input type="text" name="payments" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">credits</label>
+                    <input type="text" name="credits" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">purchases</label>
+                    <input type="text" name="purchases" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">other_debits_charges</label>
+                    <input type="text" name="other_debits_charges" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">total_payment_due_check</label>
+                    <input type="text" name="total_payment_due_check" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-summary')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-summary (GET /ccDataLedger/summary) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-summary" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">List summary</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-summary')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-summary')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">limit</label>
+                    <input type="number" name="limit" value="100" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">offset</label>
+                    <input type="number" name="offset" value="0" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">statement_id</label>
+                    <input type="number" name="statement_id" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-summary')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-delete-ccDataLedger-statements-row_id (DELETE /ccDataLedger/statements/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-delete-ccDataLedger-statements-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Delete statements row (cascades to children)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-statements-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-delete-ccDataLedger-statements-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-delete-ccDataLedger-statements-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-patch-ccDataLedger-statements-row_id (PATCH /ccDataLedger/statements/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-patch-ccDataLedger-statements-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update statements row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-statements-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-patch-ccDataLedger-statements-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">source_file</label>
+                    <input type="text" name="source_file" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="JSON array of original file names, stored as text">source_files</label>
+                    <input type="text" name="source_files" value="" placeholder="JSON array of original file names, stored as text" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cardholder</label>
+                    <input type="text" name="cardholder" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-patch-ccDataLedger-statements-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-put-ccDataLedger-statements-row_id (PUT /ccDataLedger/statements/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-put-ccDataLedger-statements-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Update statements row (partial)</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-statements-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-put-ccDataLedger-statements-row_id')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">source_file</label>
+                    <input type="text" name="source_file" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="JSON array of original file names, stored as text">source_files</label>
+                    <input type="text" name="source_files" value="" placeholder="JSON array of original file names, stored as text" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cardholder</label>
+                    <input type="text" name="cardholder" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-put-ccDataLedger-statements-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-statements-row_id (GET /ccDataLedger/statements/&#123;row_id&#125;) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-statements-row_id" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Get one row of statements</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-statements-row_id')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-statements-row_id')" class="p-6 space-y-4">
+
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-statements-row_id')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-get-ccDataLedger-statements (GET /ccDataLedger/statements) -->
+    <div id="runModal-ccDataLedger-get-ccDataLedger-statements" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">List statements</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-statements')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-get-ccDataLedger-statements')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">limit</label>
+                    <input type="number" name="limit" value="100" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">offset</label>
+                    <input type="number" name="offset" value="0" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">source_file</label>
+                    <input type="text" name="source_file" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">cardholder</label>
+                    <input type="text" name="cardholder" value="" placeholder="" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-get-ccDataLedger-statements')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
+                    <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
+                    <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RUN FORM: ccDataLedger-post-ccDataLedger-import (POST /ccDataLedger/import) -->
+    <div id="runModal-ccDataLedger-post-ccDataLedger-import" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Import statement JSON file(s) into the four tables</h3>
+                <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-import')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleSwaggerJobSubmit(event, 'ccDataLedger-post-ccDataLedger-import')" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Uploaded .json file(s); repeat the field">file</label>
+                    <input type="text" name="file" value="" placeholder="Uploaded .json file(s); repeat the field" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1" title="Server-side JSON file or directory of *.json (no &#x27;..&#x27;)">path</label>
+                    <input type="text" name="path" value="" placeholder="Server-side JSON file or directory of *.json (no &#x27;..&#x27;)" class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+                <div class="pt-4 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeSwaggerJobModal('runModal-ccDataLedger-post-ccDataLedger-import')" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Cancel</button>
                     <button type="reset" class="px-4 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium rounded-xl text-sm hover:bg-slate-200 transition-colors">Reset</button>
                     <button type="submit" class="px-5 py-2.5 bg-brand-600 text-white font-medium rounded-xl text-sm hover:bg-brand-700 shadow-lg shadow-brand-500/20 transition-all"><i class="fa-solid fa-paper-plane mr-1.5 text-xs"></i> Send</button>
                 </div>
