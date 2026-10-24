@@ -51,6 +51,9 @@ def resolve_ref(spec: dict[str, Any], node: dict[str, Any]) -> dict[str, Any]:
 
 def field_from_schema(name: str, schema: dict[str, Any], required: bool) -> dict[str, Any]:
     """Map one schema property to a form field description."""
+    multiple = schema.get("type") == "array"
+    if multiple:
+        schema = {**schema.get("items", {}), **{k: v for k, v in schema.items() if k != "items"}}
     if schema.get("format") == "binary":
         field_type = "file"
     elif schema.get("format") == "password":
@@ -65,6 +68,8 @@ def field_from_schema(name: str, schema: dict[str, Any], required: bool) -> dict
         field_type = "text"
 
     field: dict[str, Any] = {"name": name, "type": field_type, "required": required}
+    if multiple and field_type == "file":
+        field["multiple"] = True
     for key in ("description", "default", "example", "enum"):
         if key in schema:
             field[key] = schema[key]
@@ -142,7 +147,8 @@ def render_field(field: dict[str, Any]) -> str:
         checked = " checked" if str(default).lower() == "true" else ""
         control = f'<input type="checkbox" name="{name}"{checked} class="w-4 h-4 accent-brand-600">'
     elif field_type == "file":
-        control = f'<input type="file" name="{name}"{required} class="{INPUT_CLASS}">'
+        multiple = " multiple" if field.get("multiple") else ""
+        control = f'<input type="file" name="{name}"{multiple}{required} class="{INPUT_CLASS}">'
     else:
         placeholder = esc(field.get("example", field.get("description", "")))
         control = (
