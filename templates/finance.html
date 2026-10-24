@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='tailwind-config.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<div class="flex h-screen overflow-hidden">
+
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-transform duration-300 -translate-x-full md:translate-x-0">
+        <div class="h-16 flex items-center px-6 border-b border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-brand-500/30"><i class="fa-solid fa-terminal"></i></div>
+                <span class="nav-label text-lg font-bold tracking-tight">JobPulse</span>
+            </div>
+            <button id="sidebarCollapse" type="button" aria-label="Toggle sidebar" class="sidebar-collapse-btn hidden md:flex ml-auto w-8 h-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-angles-left"></i></button>
+        </div>
+        <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+            <a href="/" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"><i class="fa-solid fa-chart-pie w-5 mr-3 text-center"></i><span class="nav-label">Dashboard</span></a>
+            <a href="/finance" class="flex items-center px-4 py-3 text-sm font-medium rounded-xl bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 transition-colors"><i class="fa-solid fa-wallet w-5 mr-3 text-center"></i><span class="nav-label">Finance</span></a>
+        </nav>
+    </aside>
+
+    <div id="mainWrap" class="flex-1 flex flex-col md:pl-64 h-full overflow-hidden transition-[padding] duration-300">
+        <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 z-40 shrink-0">
+            <div class="flex items-center space-x-4">
+                <button id="sidebarToggle" class="md:hidden text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"><i class="fa-solid fa-bars text-xl"></i></button>
+                <div class="relative w-64 md:w-80">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"><i class="fa-solid fa-magnifying-glass text-sm"></i></span>
+                    <input type="text" id="searchInput" placeholder="Search transactions..." class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800/70 border-0 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                </div>
+            </div>
+            <button id="themeToggle" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-moon dark:hidden"></i><i class="fa-solid fa-sun hidden dark:block"></i>
+            </button>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-6 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">Finance Dashboard</h1>
+                    <p class="text-sm text-slate-500 dark:text-slate-400" id="sourceInfo">Credit card spending, rewards and cashback.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <label class="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">From <input type="date" id="dateFrom" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-0 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-brand-500"></label>
+                    <label class="flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">To <input type="date" id="dateTo" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 border-0 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-brand-500"></label>
+                    <button id="clearDates" class="hidden px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Clear</button>
+                    <select id="cardFilter" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500"><option value="all">All cards</option></select>
+                    <button id="refreshBtn" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"><i class="fa-solid fa-rotate mr-1.5"></i> Refresh</button>
+                </div>
+            </div>
+
+            <div id="errorBox" class="hidden p-4 rounded-2xl bg-rose-500/10 text-rose-500 text-sm"></div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Spend</p>
+                            <h3 class="text-2xl font-bold mt-1" id="statSpend">–</h3>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 inline-block" id="statSpendSub"></span>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center text-xl"><i class="fa-solid fa-credit-card"></i></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Payments / Credits</p>
+                            <h3 class="text-2xl font-bold mt-1" id="statPaid">–</h3>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 inline-block" id="statPaidSub"></span>
+                        </div>
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center text-xl"><i class="fa-solid fa-circle-check"></i></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Reward Points</p>
+                            <h3 class="text-2xl font-bold mt-1" id="statPoints">–</h3>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 inline-block" id="statPointsSub"></span>
+                        </div>
+                        <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-xl"><i class="fa-solid fa-star"></i></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cashback</p>
+                            <h3 class="text-2xl font-bold mt-1" id="statCashback">–</h3>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 mt-1 inline-block" id="statCashbackSub"></span>
+                        </div>
+                        <div class="w-12 h-12 bg-rose-500/10 text-rose-500 rounded-2xl flex items-center justify-center text-xl"><i class="fa-solid fa-coins"></i></div>
+                    </div>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm xl:col-span-2">
+                        <h3 class="text-sm font-semibold">Date wise spend</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Daily spend over time</p>
+                        <div class="relative h-64"><canvas id="chartDate"></canvas></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm ">
+                        <h3 class="text-sm font-semibold">Day wise spend</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Spend by day of week</p>
+                        <div class="relative h-64"><canvas id="chartDay"></canvas></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm xl:col-span-2">
+                        <h3 class="text-sm font-semibold">Month wise spend</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Monthly spend vs payments</p>
+                        <div class="relative h-64"><canvas id="chartMonth"></canvas></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm ">
+                        <h3 class="text-sm font-semibold">Card wise spend</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Share of spend per card</p>
+                        <div class="relative h-64"><canvas id="chartCard"></canvas></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm xl:col-span-2">
+                        <h3 class="text-sm font-semibold">Category wise spend</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Spend by category</p>
+                        <div class="relative h-64"><canvas id="chartCategory"></canvas></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm ">
+                        <h3 class="text-sm font-semibold">Reward points</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Points earned per card</p>
+                        <div class="relative h-64"><canvas id="chartPoints"></canvas></div>
+                    </div>
+                <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm xl:col-span-3">
+                        <h3 class="text-sm font-semibold">Cashback</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Cashback earned per month</p>
+                        <div class="relative h-64"><canvas id="chartCashback"></canvas></div>
+                    </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 text-sm font-semibold">Card statements</div>
+                <div class="overflow-x-auto"><table class="w-full text-left text-sm">
+                    <thead><tr class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/40">
+                        <th class="py-3 px-6">Card</th><th class="py-3 px-6">Statement</th><th class="py-3 px-6">Due date</th><th class="py-3 px-6 text-right">Total due</th><th class="py-3 px-6 text-right">Limit used</th></tr></thead>
+                    <tbody id="cardsBody" class="divide-y divide-slate-200 dark:divide-slate-800"></tbody></table></div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 text-sm font-semibold">Transactions <span class="text-slate-500 font-normal" id="txnCount"></span></div>
+                <div class="overflow-x-auto"><table class="w-full text-left text-sm">
+                    <thead><tr class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/40">
+                        <th class="py-3 px-6">Date</th><th class="py-3 px-6">Details</th><th class="py-3 px-6">Card</th><th class="py-3 px-6">Category</th><th class="py-3 px-6 text-right">Amount</th><th class="py-3 px-6 text-right">Points</th><th class="py-3 px-6 text-right">Cashback</th></tr></thead>
+                    <tbody id="txnBody" class="divide-y divide-slate-200 dark:divide-slate-800"></tbody></table></div>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='finance.js') }}"></script>
+<script src="{{ url_for('static', filename='sidebar-collapse.js') }}"></script>
+</body>
+</html>
